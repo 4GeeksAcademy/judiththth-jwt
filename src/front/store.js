@@ -24,14 +24,20 @@ export default function storeReducer(store, action = {}) {
         message: action.payload
       };
       
-    case 'add_task':
+    case 'login':
 
-      const { id,  color } = action.payload
+       return {
+        ...store,
+        isAuth: true
+      };
+
+    case 'logout':
 
       return {
         ...store,
-        todos: store.todos.map((todo) => (todo.id === id ? { ...todo, background: color } : todo))
+        isAuth: false
       };
+
     default:
       throw Error('Unknown action.');
   }    
