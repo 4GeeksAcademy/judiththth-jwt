@@ -9,7 +9,8 @@ export const Home = () => {
 	const loadMessage = async () => {
 		try {
 			const backendUrl = import.meta.env.VITE_BACKEND_URL
-
+			console.log(backendUrl);
+			
 			if (!backendUrl) throw new Error("VITE_BACKEND_URL is not defined in .env file")
 
 			const response = await fetch(backendUrl + "/api/hello")
@@ -32,6 +33,14 @@ export const Home = () => {
 		loadMessage()
 	}, [])
 
+	const handleLogin = () => {
+		window.location.href = "/login"
+	}
+
+	const handleSignUp = () => {
+		window.location.href = "/signup"
+	}
+
 	return (
 		<div className="text-center mt-5">
 			<h1 className="display-4">Hello Rigo!!</h1>
@@ -47,6 +56,11 @@ export const Home = () => {
 					</span>
 				)}
 			</div>
+			<div><button className="btn btn-primary" onClick={handleLogin}>Hacer login</button>
+			<br></br>
+			<button className="btn btn-success" onClick={handleSignUp}>Registrarse</button>
+			
+		</div>
 		</div>
 	);
 }; 
